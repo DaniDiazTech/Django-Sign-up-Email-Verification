@@ -20,7 +20,7 @@ class SignUpView(CreateView):
         to_return = super().form_valid(form)
         
         user = form.save()
-        user.is_active = False # Turns the user status to unactive
+        user.is_active = False # Turns the user status to inactive
         user.save()
 
         form.send_activation_email(self.request, user)
