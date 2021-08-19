@@ -29,9 +29,10 @@ class SignUpView(CreateView):
 
 
 class ActivateView(RedirectView):
-    # Custom get method
+
     url = reverse_lazy('success')
 
+    # Custom get method
     def get(self, request, uidb64, token):
 
         try:
@@ -48,12 +49,10 @@ class ActivateView(RedirectView):
         else:
             return render(request, 'users/activate_account_invalid.html')
 
+class CustomLoginView(LoginView):
+    template_name = 'users/login.html'
 class CheckEmailView(TemplateView):
     template_name = 'users/check_email.html'
 
 class SuccessView(TemplateView):
     template_name = 'users/success.html'
-
-class CustomLoginView(LoginView):
-    template_name = 'users/login.html'
-    
